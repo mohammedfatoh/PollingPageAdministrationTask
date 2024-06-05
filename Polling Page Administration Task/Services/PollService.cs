@@ -34,7 +34,9 @@ namespace Polling_Page_Administration_Task.Services
 
         public Poll Get(int Id)
         {
-            return context.Polls.FirstOrDefault(p => p.Id == Id);
+            return context.Polls.Include(p => p.Questions)
+                              .ThenInclude(q => q.Answers)
+                              .FirstOrDefault(p => p.Id == Id);
         }
 
         public Poll GetLast()
@@ -43,6 +45,11 @@ namespace Polling_Page_Administration_Task.Services
                               .ThenInclude(q => q.Answers)
                              .OrderByDescending(p => p.Id)
                              .FirstOrDefault();
+        }
+
+        public int Update(int Id, Poll Model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

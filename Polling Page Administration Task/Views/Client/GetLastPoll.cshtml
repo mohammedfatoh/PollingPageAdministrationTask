@@ -1,17 +1,19 @@
 ﻿@model Poll
+
+<form asp-action="Vote" method="post">
+    <input type="hidden" name="pollId" value="@Model.Id" />
 @foreach (var question in Model.Questions)
 {
     <li>
         <h3>@question.Text</h3>
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
 
         <ul>
             @foreach (var answer in question.Answers)
             {
-                <li>@answer.Text</li>
+                    <input type="radio" name="Id" value="@answer.Id" /> @answer.Text
             }
         </ul>
     </li>
 }
+    <button type="submit">Vote</button>
+</form>

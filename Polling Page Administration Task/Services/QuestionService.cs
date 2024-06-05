@@ -31,5 +31,10 @@ namespace Polling_Page_Administration_Task.Services
         {
             throw new NotImplementedException();
         }
+
+        public int Update(int Id, Question Model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,6 +11,8 @@ namespace Polling_Page_Administration_Task.Services
 
         T GetLast();
 
+        int Update(int Id,T Model);
+
     }
 
 

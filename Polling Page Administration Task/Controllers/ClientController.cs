@@ -7,10 +7,12 @@ namespace Polling_Page_Administration_Task.Controllers
     public class ClientController : Controller
     {
         private readonly IServiceBase<Poll> pollService;
+        private readonly IServiceBase<Answer> answerService;
 
-        public ClientController(IServiceBase<Poll> pollService)
+        public ClientController(IServiceBase<Poll> pollService, IServiceBase<Answer> answerService)
         {
             this.pollService = pollService;
+            this.answerService = answerService;
         }
         public IActionResult Index()
         {
@@ -26,5 +28,20 @@ namespace Polling_Page_Administration_Task.Controllers
             }
             return View(poll);
         }
-    }
+
+        [HttpPost]
+        public IActionResult Vote(int pollId, int answerid)
+        {
+            var poll = pollService.Get(pollId);
+            if (poll == null)
+            {
+                return NotFound();
+            }
+
+            answerService.Update(answerid, null);
+           
+
+            return RedirectToAction("GetLastPoll");
+        }
+    } 
 }

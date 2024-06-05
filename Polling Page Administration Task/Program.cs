@@ -19,6 +19,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddTransient(typeof(IServiceBase<Poll>), typeof(PollService));
 
 builder.Services.AddTransient(typeof(IServiceBase<Question>), typeof(QuestionService));
+builder.Services.AddTransient(typeof(IServiceBase<Answer>), typeof(AnswerService));
 
 var app = builder.Build();
 
