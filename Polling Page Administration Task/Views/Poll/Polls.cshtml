@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Poll>
+
+<h1>Polls</h1>
+<ul>
+    @foreach (var poll in Model)
+    {
+        <li>
+            <h2>@poll.Title</h2>
+            <a asp-controller="Question" asp-action="CreateQuestion" asp-route-pollId="@poll.Id">Add Question</a>
+            <ul>
+                @foreach (var question in poll.Questions)
+                {
+                    <li>
+                        <h3>@question.Text</h3>
+                        <div class="col-md-offset-2 col-md-10">
+                       <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                        
+                        <ul>
+                            @foreach (var answer in question.Answers)
+                            {
+                                <li>@answer.Text</li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

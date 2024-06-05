@@ -1,0 +1,25 @@
+﻿@using Polling_Page_Administration_Task.ViewModels
+@model AddQuestionViewModel
+
+<form asp-action="CreateQuestion" method="post">
+    <div class="form-group">
+        <label asp-for="Text" class="control-label">Question</label>
+        <input asp-for="Text" class="form-control" />
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    <div id="Answers">
+            @for (int i = 0; i < Model.Answers.Count; i++)
+            {
+                <div class="form-group">
+                    <label asp-for="Answers[i]" class="control-label col-md-2">Answer</label>
+                    <div class="col-md-10">
+                        <input asp-for="Answers[i]" class="form-control" />
+                        <span asp-validation-for="Answers[i]" class="text-danger"></span>
+                    </div>
+                </div>
+            }
+        
+    </div>
+    <input type="hidden" asp-for="PollId" />
+    <button type="submit" class="btn btn-primary">Add Question</button>
+</form>
