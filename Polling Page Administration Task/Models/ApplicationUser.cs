@@ -7,5 +7,6 @@ namespace Polling_Page_Administration_Task.Models
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
+
     }
 }

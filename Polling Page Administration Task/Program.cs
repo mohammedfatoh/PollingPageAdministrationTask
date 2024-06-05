@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Polling_Page_Administration_Task.Data;
+using Polling_Page_Administration_Task.Mapper;
 using Polling_Page_Administration_Task.Models;
 using Polling_Page_Administration_Task.Services;
 
@@ -21,6 +22,8 @@ builder.Services.AddTransient(typeof(IServiceBase<Poll>), typeof(PollService));
 builder.Services.AddTransient(typeof(IServiceBase<Question>), typeof(QuestionService));
 builder.Services.AddTransient(typeof(IServiceBase<Answer>), typeof(AnswerService));
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +34,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

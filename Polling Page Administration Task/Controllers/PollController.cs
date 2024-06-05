@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Polling_Page_Administration_Task.Models;
 using Polling_Page_Administration_Task.Services;
 using Polling_Page_Administration_Task.ViewModels;
@@ -17,11 +18,13 @@ namespace Polling_Page_Administration_Task.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Polls()
         {
             return View(await pollService.GetAll());
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AddPoll()
         {
 
@@ -31,6 +34,7 @@ namespace Polling_Page_Administration_Task.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddPoll(CreatePollViewModel model)

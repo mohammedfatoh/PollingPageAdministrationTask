@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Polling_Page_Administration_Task.Models;
 using Polling_Page_Administration_Task.Services;
 using Polling_Page_Administration_Task.ViewModels;
@@ -19,7 +20,7 @@ namespace Polling_Page_Administration_Task.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateQuestion(int pollId)
         {
             var poll = _pollService.Get(pollId);
@@ -31,6 +32,7 @@ namespace Polling_Page_Administration_Task.Controllers
             return View(addnewQuestion); // Pass an empty PollQuestion for the form
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateQuestion(AddQuestionViewModel addnewQuestion)
         {
